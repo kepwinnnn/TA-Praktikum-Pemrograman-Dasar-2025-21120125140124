@@ -35,16 +35,9 @@ function scan_songs($dir){
             $tracks = [];
             foreach($files as $ff){
                 if (preg_match('/\.(flac|mp3|wav)$/i',$ff)){
-
-                    // CLEAN TITLE FIX (complete)
                     $clean = pathinfo($ff, PATHINFO_FILENAME);
-
-                    // remove leading dots, spaces, numbers, dash
                     $clean = preg_replace('/^[\.\s0-9-]+/', '', $clean);
-
-                    // fix double spaces
                     $clean = preg_replace('/\s+/', ' ', $clean);
-
                     $tracks[] = [
                         'title' => trim($clean),
                         'url'   => 'songs/'.rawurlencode($f).'/'.rawurlencode($ff)
@@ -68,17 +61,28 @@ function scan_songs($dir){
 }
 
 $library = scan_songs(__DIR__.'/songs');
+
+// create playlist array
+$playlist = [];
+foreach($library as $alb){
+    foreach($alb['tracks'] as $t){
+        $playlist[] = [
+            'album' => $alb['album'],
+            'title' => $t['title'],
+            'url'   => $t['url']
+        ];
+    }
+}
 ?>
 <!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>Student Music Player</title>
-
 <style>
 :root { --bg:#0b0b0d; --panel:#0f1113; --muted:#9aa0a6; --white:#ffffff; }
-html,body { margin:0; background:var(--bg); color:var(--white); font-family:Inter,Segoe UI,Arial; }
-.app { display:flex; gap:12px; padding:16px; height:calc(100vh - 60px); box-sizing:border-box; }
+html,body { margin:0; background:var(--bg); color:var(--white); font-family:Inter,Segoe UI,Arial; height:100%; }
+.app { display:flex; gap:12px; padding:16px; height:calc(100% - 70px); box-sizing:border-box; }
 .left { width:260px; background:var(--panel); border-radius:8px; padding:12px; overflow:auto; }
 .album { display:flex; gap:10px; padding:8px; border-radius:6px; cursor:pointer; }
 .album:hover { background:#141416; }
@@ -87,19 +91,20 @@ html,body { margin:0; background:var(--bg); color:var(--white); font-family:Inte
 .tracks { background:var(--panel); border-radius:8px; flex:1; overflow:auto; padding:10px; }
 .track { display:flex; gap:10px; align-items:center; padding:7px; border-radius:6px; color:var(--muted); }
 .track:hover { background:#131518; color:var(--white); }
-.btn { border:1px solid #2d2f31; background:transparent; color:var(--white); padding:6px 10px; border-radius:6px; cursor:pointer; }
-.seekbar { position:fixed; left:0; right:0; bottom:0; display:flex; gap:10px; background:#0009; padding:10px; }
-.progress { width:100%; height:6px; background:#2b2b2b; }
-.icon { width:18px; height:18px; fill:white; }
+.seekbar { position:fixed; left:0; right:0; bottom:0; display:flex; gap:10px; background:#0009; padding:10px; align-items:center; }
+.progress { flex:1; }
+.btn { border:1px solid #2d2f31; background:transparent; color:var(--white); padding:6px 10px; border-radius:6px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+.icon { width:20px; height:20px; fill:white; }
+.small { font-size:12px; }
+.muted { color:var(--muted); }
+.controls { display:flex; gap:8px; }
 </style>
-
 </head>
 <body>
 
 <div class="app">
     <div class="left">
         <div class="small muted">ALBUMS</div>
-
         <?php foreach($library as $alb): ?>
         <div class="album">
             <div class="cover">
@@ -116,6 +121,7 @@ html,body { margin:0; background:var(--bg); color:var(--white); font-family:Inte
     </div>
 
     <div class="center">
+
         <div class="tracks" id="tracksBox"></div>
     </div>
 </div>
@@ -123,90 +129,71 @@ html,body { margin:0; background:var(--bg); color:var(--white); font-family:Inte
 <audio id="player" preload="metadata"></audio>
 
 <div class="seekbar">
-    <button id="prevBtn" class="btn">
-        <svg class="icon" viewBox="0 0 24 24"><path d="M6 6v12l8.5-6zM18 6v12h-2V6z"/></svg>
-    </button>
-
-    <button id="playBtn" class="btn">
-        <svg id="playIcon" class="icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-    </button>
-
-    <input id="progress" type="range" class="progress" value="0">
-
-    <button id="nextBtn" class="btn">
-        <svg class="icon" viewBox="0 0 24 24"><path d="M16 6v12l-8.5-6zM6 6v12h2V6z"/></svg>
-    </button>
-
-    <div id="nowPlaying" style="width:150px;text-align:right" class="small muted">
-        Not playing
+    <div class="controls">
+        <button id="prevBtn" class="btn">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M6 6v12l8.5-6zM18 6v12h-2V6z"/></svg>
+        </button>
+        <button id="playBtn" class="btn">
+            <svg id="playIcon" class="icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <button id="nextBtn" class="btn">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M16 6v12l-8.5-6zM6 6v12h2V6z"/></svg>
+        </button>
     </div>
+    <input id="progress" type="range" class="progress" value="0">
+    <div id="nowPlaying" class="small muted" style="width:150px;text-align:right">Not playing</div>
 </div>
 
 <script>
-const library = <?php echo json_encode($library); ?>;
+const playlist = <?php echo json_encode($playlist); ?>;
 
-let playlist=[];
-library.forEach(alb=>{
-    alb.tracks.forEach(t=>{
-        playlist.push({
-            album: alb.album,
-            title: t.title,
-            url: t.url
-        });
-    });
-});
-
-const box=document.getElementById('tracksBox');
-playlist.forEach((t,i)=>{
-    const d=document.createElement('div');
-    d.className='track';
-    d.innerHTML = `
-        <strong>${t.title}</strong>
-        <span style="margin-left:auto">${i+1}</span>
-    `;
-    d.onclick=()=>playIndex(i);
+const box = document.getElementById('tracksBox');
+playlist.forEach((t, i) => {
+    const d = document.createElement('div');
+    d.className = 'track';
+    d.innerHTML = `<strong>${t.title}</strong><span style="margin-left:auto">${i+1}</span>`;
+    d.onclick = () => playIndex(i);
     box.appendChild(d);
 });
 
-const player=document.getElementById('player');
-const playBtn=document.getElementById('playBtn');
-const playIcon=document.getElementById('playIcon');
-const progress=document.getElementById('progress');
-const nowPlaying=document.getElementById('nowPlaying');
-let index=-1;
+const player = document.getElementById('player');
+const playBtn = document.getElementById('playBtn');
+const playIcon = document.getElementById('playIcon');
+const progress = document.getElementById('progress');
+const nowPlaying = document.getElementById('nowPlaying');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+let index = -1;
 
 function playIndex(i){
-    index=i;
-    player.src=playlist[i].url;
+    if(i < 0) i = 0;
+    if(i >= playlist.length) i = playlist.length - 1;
+    index = i;
+    player.src = playlist[i].url;
     player.play();
-    nowPlaying.textContent=playlist[i].title;
-    playIcon.innerHTML='<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+    nowPlaying.textContent = playlist[i].title;
+    playIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
 }
 
-playBtn.onclick=()=>{
-    if (!player.src){
+playBtn.onclick = () => {
+    if(!player.src){
         playIndex(0);
-    } else if (player.paused){
+    } else if(player.paused){
         player.play();
-        playIcon.innerHTML='<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+        playIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
     } else {
         player.pause();
-        playIcon.innerHTML='<path d="M8 5v14l11-7z"/>';
+        playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
     }
 };
 
-player.onended=()=>{
-    if(index+1<playlist.length) playIndex(index+1);
-};
+prevBtn.onclick = () => { if(index > 0) playIndex(index - 1); };
+nextBtn.onclick = () => { if(index + 1 < playlist.length) playIndex(index + 1); };
 
-player.ontimeupdate=()=>{
-    if(player.duration){
-        progress.max=player.duration;
-        progress.value=player.currentTime;
-    }
-};
-
-progress.oninput=()=>player.currentTime=progress.value;
+player.onended = () => { if(index + 1 < playlist.length) playIndex(index + 1); };
+player.ontimeupdate = () => { if(player.duration) progress.value = player.currentTime; };
+progress.oninput = () => player.currentTime = progress.value;
 </script>
 
 </body>
