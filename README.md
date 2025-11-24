@@ -17,13 +17,13 @@
    ```
    /xampp/htdocs/(namafolder)/musics/
    ```
-   - Bisa diatur per album.  
-   - Foto cover album bersifat opsional.
+   - Foto cover album bersifat opsional/gak wajib , tp bs display kalo ada
 
-### Catatan
+### Notes Buat Kakaknya
 - Aku Bisa kirim beberapa lagu kalo kakanya butuh buat test
 - File yang Aku punya kebanyakan berformat `.flac`.  
-- size `.flac` itu cukup gede, kisaran 20-30 MB per lagu.
+- size `.flac` mayan gede, kisaran 20-30MB/lagu.
+
 
 
 
