@@ -1,5 +1,5 @@
 <?php
-// ====== SONG SCANNER ======
+
 function scan_songs($dir){
     $out = [];
     if (!is_dir($dir)) return $out;
@@ -62,7 +62,7 @@ function scan_songs($dir){
 
 $library = scan_songs(__DIR__.'/songs');
 
-// create playlist array
+
 $playlist = [];
 foreach($library as $alb){
     foreach($alb['tracks'] as $t){
