@@ -78,7 +78,7 @@ foreach($library as $alb){
 <html>
 <head>
 <meta charset="utf-8">
-<title>Student Music Player</title>
+<title>TA Progdas Kevin</title>
 <style>
 :root { --bg:#0b0b0d; --panel:#0f1113; --muted:#9aa0a6; --white:#ffffff; }
 html,body { margin:0; background:var(--bg); color:var(--white); font-family:Inter,Segoe UI,Arial; height:100%; }
