@@ -43,7 +43,7 @@
 - Cover album ditampilkan jika tersedia (estetika wok)
 - Dapet Nilai TA Progdas
 
-### Cara memulai
+### Cara pakenya
 1. Masukkan folder proyek ke:
    ```
    /xampp/htdocs/(namafolder)/index.php
@@ -63,4 +63,5 @@
 ### Yang Punya : 
 - Kevin Nafeeza Daffa / 21120125140124
 - Kelompok 34, Shift 5
+
 
