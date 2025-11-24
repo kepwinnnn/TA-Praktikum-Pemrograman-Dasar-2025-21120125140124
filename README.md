@@ -7,7 +7,7 @@
 
 ## TA-Praktikum-Pemrograman-Dasar-2025-21120125140124
 
-### Petunjuk Penggunaan
+### Cara Pakenya
 1. Masukkan file ke folder:  
    ```
    /xampp/htdocs/(namafolder)/index.php
@@ -15,7 +15,7 @@
    untuk music player.
 2. Masukkan musik ke folder:  
    ```
-   /xampp/htdocs/(namafolder)/music/
+   /xampp/htdocs/(namafolder)/musics/
    ```
    - Bisa diatur per album.  
    - Foto cover album bersifat opsional.
@@ -24,5 +24,6 @@
 - Aku Bisa kirim beberapa lagu kalo kakanya butuh buat test
 - File yang Aku punya kebanyakan berformat `.flac`.  
 - size `.flac` itu cukup gede, kisaran 20-30 MB per lagu.
+
 
 
