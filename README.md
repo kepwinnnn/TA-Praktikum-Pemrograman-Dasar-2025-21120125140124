@@ -21,7 +21,8 @@
    - Foto cover album bersifat opsional.
 
 ### Catatan
-- Aku Bisa kirim beberapa lagu jika dibutuhkan.  
+- Aku Bisa kirim beberapa lagu kalo kakanya butuh buat test
 - File yang Aku punya kebanyakan berformat `.flac`.  
 - size `.flac` itu cukup gede, kisaran 20-30 MB per lagu.
+
 
