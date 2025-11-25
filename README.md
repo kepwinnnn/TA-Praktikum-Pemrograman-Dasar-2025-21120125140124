@@ -5,7 +5,7 @@
 - **Music player** sederhana berbasis PHP.
 - bisa play file musik lokal di browser.
 - php itu entengg , lebih enteng dari misal foobar2000/sejenisnya
-- Play Music/File Audio , bisa berformat `.flac` atau `.mp3` , mungkin bisa dipertimbangkan `.ogg`/`.wav/`/`.AAC`
+- Play Music/File Audio , bisa berformat `.flac` atau `.mp3` , mungkin bisa dipertimbangkan `.ogg`/`.wav`/`.AAC`
 
 ### knp ini proyek beguna?
 - Mengatur dan memutar koleksi musik dari files-filesmu
@@ -67,6 +67,7 @@
 - Kelompok 34, Shift 5
 
 ---
+
 
 
 
