@@ -3,10 +3,12 @@
 
 ### Proyek Ini Ngapain Sih?
 - **Music player** sederhana berbasis PHP.
-- Memutar file musik lokal di browser.
+- bisa play file musik lokal di browser.
+- php itu entengg , lebih enteng dari misal foobar2000/sejenisnya
+- Play Music/File Audio , bisa berformat `.flac` atau `.mp3` , mungkin bisa dipertimbangkan `.ogg`/`.wav/`/`.AAC`
 
 ### knp ini proyek beguna?
-- Mengatur dan memutar koleksi musik dari lokal playlistmu/lokal filesmu
+- Mengatur dan memutar koleksi musik dari files-filesmu
 - Cover album ditampilkan jika tersedia (estetika wok)
 - Dapet Nilai TA Progdas
 
@@ -23,7 +25,7 @@
 - Foto cover album bersifat opsional, tapi akan ditampilkan jika ada.
 
 ### Love Notes <33
-- Aku bisa kirim beberapa lagu jika dibutuhkan untuk test.
+- Aku bisa kirim beberapa lagu kalo dibutuhin buat test.
 - File yang aku punya kebanyakan berformat `.flac`.
 - Ukuran file `.flac` cukup besar, kisaran 20–30MB per lagu.
 
@@ -65,5 +67,6 @@
 - Kelompok 34, Shift 5
 
 ---
+
 
 
