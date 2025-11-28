@@ -1,4 +1,40 @@
 # TA-Praktikum-Pemrograman-Dasar-2025-21120125140124
+## Indonesian
+
+### Proyek Ini Ngapain Sih?
+- **Music player** sederhana berbasis PHP.
+- bisa play file musik lokal di browser.
+- php itu entengg , lebih enteng dari misal foobar2000/sejenisnya
+- Play Music/File Audio , bisa berformat `.flac` atau `.mp3` , mungkin bisa dipertimbangkan `.ogg`/`.wav`/`.AAC`
+
+### knp ini proyek beguna?
+- Mengatur dan memutar koleksi musik dari files-filesmu
+- Cover album ditampilkan jika tersedia (estetika wok)
+- Dapet Nilai TA Progdas
+
+### Cara pakenya
+1. Masukkan folder proyek ke:
+   ```
+   /xampp/htdocs/(namafolder)/index.php
+   ```
+   untuk music player.
+2. Masukkan file musik ke:
+   ```
+   /xampp/htdocs/(namafolder)/musics/
+   ```
+- Foto cover album bersifat opsional, tapi akan ditampilkan jika ada.
+
+### Love Notes <33
+- Aku bisa kirim beberapa lagu kalo dibutuhin buat test.
+- File yang aku punya kebanyakan berformat `.flac`.
+- Ukuran file `.flac` cukup besar, kisaran 20–30MB per lagu.
+
+### Yang Punya : 
+- Kevin Nafeeza Daffa / 21120125140124
+- Kelompok 34, Shift 5
+
+---
+
 ## English 
 
 ### What the project does
@@ -26,47 +62,13 @@
 - Most files are `.flac`.
 - `.flac` files are large, around 20–30MB per song.
 
-### Where to get help
-- Contact the project owner (Kevin) for questions or troubleshooting.
-
 ### Maintainers and contributors
 - Kevin Nafeeza Daffa / 21120125140124
 - Kelompok 34, Shift 5
 
 ---
 
-## Indonesian
 
-### Proyek Ini Ngapain Sih?
-- **Music player** sederhana berbasis PHP.
-- Memutar file musik lokal di browser.
 
-### knp ini proyek beguna?
-- Mengatur dan memutar koleksi musik dari lokal playlistmu/lokal filesmu
-- Cover album ditampilkan jika tersedia (estetika wok)
-- Dapet Nilai TA Progdas
 
-### Cara memulai
-1. Masukkan folder proyek ke:
-   ```
-   /xampp/htdocs/(namafolder)/index.php
-   ```
-   untuk music player.
-2. Masukkan file musik ke:
-   ```
-   /xampp/htdocs/(namafolder)/musics/
-   ```
-- Foto cover album bersifat opsional, tapi akan ditampilkan jika ada.
-
-### Catatan untuk testing
-- Aku bisa kirim beberapa lagu jika dibutuhkan untuk test.
-- File yang aku punya kebanyakan berformat `.flac`.
-- Ukuran file `.flac` cukup besar, kisaran 20–30MB per lagu.
-
-### Tempat untuk minta bantuan
-- Bisa menghubungi pemilik proyek (Kevin) untuk pertanyaan atau troubleshooting.
-
-### Pemelihara dan kontributor
-- Kevin Nafeeza Daffa / 21120125140124
-- Kelompok 34, Shift 5
 
