@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// ===== CLASS (OOP + ENCAPSULATION) =====
+// Pemenuhan Modul OOP/Modul5
 class MusicPlayer {
     private $library = [];   // songs library
     private $queue   = [];   // queue = FIFO
@@ -13,7 +13,7 @@ class MusicPlayer {
         $this->history = array_map([$this,'normalizeTrack'], $_SESSION['history'] ?? []);
     }
 
-    // ===== FUNCTION / METHOD =====
+    // Ini function + encapsulation/Modul4 + Modul6
     private function scanSongs($dir){
         $out = [];
         if (!is_dir($dir)) return $out;
@@ -63,7 +63,7 @@ class MusicPlayer {
         return $out;
     }
 
-    // keep track format consistent
+    
     private function normalizeTrack($item){
         if (is_array($item)){
             $item['title'] = $item['title'] ?? $this->prettyTitle($item['url'] ?? '');
@@ -99,14 +99,14 @@ class MusicPlayer {
     }
 }
 
-// ===== VARIABLES + SETUP =====
+// Ini Variable/Modul1
 $player = new MusicPlayer(__DIR__.'/songs');
 $play   = null;
 $playTitle = "";
 $playCover = "";
 $message = "";
 
-// ===== IF-ELSE FOR ACTIONS =====
+// Ini If-else/Modul2
 if (isset($_GET['add'])){
     $player->addToQueue([
         'url'=>$_GET['add'],
@@ -135,10 +135,10 @@ else if (isset($_GET['play'])){
     $message = "Playing now.";
 }
 
-// keep session updated
+
 $player->saveState();
 
-// ===== SIMPLE GUI (HTML ONLY) =====
+// Ini GUI/Modul8
 ?>
 <!doctype html>
 <html>
@@ -162,14 +162,15 @@ audio{width:100%;margin-top:12px;}
 </style>
 </head>
 <body>
-<h1>Music Player (PHP Only)</h1>
+<h1>Music Player</h1>
 <?php if($message): ?><div class="msg"><?=$message?></div><?php endif; ?>
 
+<!-- Ini buat menuhin For Loop/Modul 3-->
 <div class="box">
     <h2>All Tracks</h2>
     <?php
     $lib = $player->getLibrary();
-    for ($i=0; $i < count($lib); $i++){ // FOR LOOP USAGE
+    for ($i=0; $i < count($lib); $i++){ 
         $alb = $lib[$i];
         foreach($alb['tracks'] as $t){
             $url = urlencode($t['url']);
@@ -183,9 +184,9 @@ audio{width:100%;margin-top:12px;}
     }
     ?>
 </div>
-
-<div class="box">
-    <h2>Queue (FIFO)</h2>
+<!-- Ini Queue Dsni Cuman Buat Menuhin Queue/FIFO Modul7  -->
+<div class="box"> 
+    <h2>Queue </h2> 
     <?php if (count($player->getQueue())): ?>
         <?php foreach($player->getQueue() as $q): ?>
             <?php $qt = $q['title'] ?? $player->prettyTitle($q['url'] ?? ''); ?>
@@ -196,9 +197,9 @@ audio{width:100%;margin-top:12px;}
         <div class="small">Queue empty</div>
     <?php endif; ?>
 </div>
-
+<!-- Ini Stack Dsni Cuman Buat Menuhin Stack/LIFO Modul7  -->
 <div class="box">
-    <h2>History (Stack LIFO)</h2>
+    <h2>Recently Played</h2>
     <?php if (count($player->getHistory())): ?>
         <?php foreach(array_reverse($player->getHistory()) as $h): ?>
             <?php $ht = $h['title'] ?? $player->prettyTitle($h['url'] ?? ''); ?>
@@ -227,7 +228,7 @@ audio{width:100%;margin-top:12px;}
     <img src="<?=$playCover ?: 'https://via.placeholder.com/120?text=Playing'?>">
     <div>
         <strong><?=$playTitle ?: $player->prettyTitle($play)?></strong>
-        <audio controls autoplay src="<?=$play?>"></audio>
+        <audio id="player" controls autoplay src="<?=$play?>"></audio>
     </div>
 </div>
 <?php endif; ?>
