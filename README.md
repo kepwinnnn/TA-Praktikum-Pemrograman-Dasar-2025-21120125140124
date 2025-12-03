@@ -25,9 +25,11 @@ Di dalam file `index.php`, cari bagian constructor:
 ```php
 public function __construct(){
     $this->songs = [
-        ['title' => 'Tarot - Feast', 'url' => 'lagu1.flac'],
-        ['title' => 'Judul Lagu 2', 'url' => 'lagu2.flac'],
-        ['title' => 'Judul Lagu 3', 'url' => 'lagu3.flac']
+        ['title' => 'Tarot - Feast', 'url' => 'Tarot.flac'],
+        ['title' => 'O, Tuan - Feast', 'url' => 'o,Tuan.flac'],
+        ['title' => 'From Eden - Hozier', 'url' => 'Hozier - From Eden.flac']
+        ['title' => 'Telenovia - Reality Club', 'url' => '1. Reality Club - Telenovia.flac']
+        ['title' => 'Ripples Of Past Reverie', 'url' => '01. Ripples of Past Reverie (English Ver.).flac']
     ];
 }
 ```
