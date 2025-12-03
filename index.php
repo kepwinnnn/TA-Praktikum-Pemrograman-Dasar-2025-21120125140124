@@ -19,7 +19,7 @@ class MusicPlayer {
 
     public function playSong($song){
         $this->current = $song;
-        $this->count++;
+        
     }
 
     public function getCurrent(){
