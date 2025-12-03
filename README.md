@@ -7,11 +7,11 @@
 Pastikan struktur project seperti ini:
 
 ```
-/project-folder
-    index.php
-    lagu1.flac
-    lagu2.flac
-    lagu3.flac
+xampp/htdocs/project-folder
+               index.php
+               lagu1.flac
+               lagu2.flac
+               lagu3.flac
 ```
 
 Nggak pakai album, folder cover, atau auto scan. Semua manual biar gampang dijelasin.
@@ -25,7 +25,7 @@ Di dalam file `index.php`, cari bagian constructor:
 ```php
 public function __construct(){
     $this->songs = [
-        ['title' => 'Judul Lagu 1', 'url' => 'lagu1.flac'],
+        ['title' => 'Tarot - Feast', 'url' => 'lagu1.flac'],
         ['title' => 'Judul Lagu 2', 'url' => 'lagu2.flac'],
         ['title' => 'Judul Lagu 3', 'url' => 'lagu3.flac']
     ];
