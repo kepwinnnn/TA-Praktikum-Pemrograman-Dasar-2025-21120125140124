@@ -7,11 +7,11 @@
 Pastikan struktur project seperti ini:
 
 ```
-/project-folder
-    index.php
-    lagu1.flac
-    lagu2.flac
-    lagu3.flac
+xampp/htdos/project-folder
+                index.php
+                lagu1.flac
+                lagu2.flac
+                lagu3.flac
 ```
 
 Nggak pakai album, folder cover, atau auto scan. Semua manual biar gampang dijelasin.
@@ -57,3 +57,4 @@ File : `Tarot.flac`
 - Kelompok 34, Shift 5
 
 ---
+
