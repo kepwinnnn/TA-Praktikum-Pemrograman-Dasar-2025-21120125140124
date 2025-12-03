@@ -19,15 +19,10 @@ class MusicPlayer {
 
     public function playSong($song){
         $this->current = $song;
-        
     }
 
     public function getCurrent(){
         return $this->current;
-    }
-
-    public function getCount(){
-        return $this->count;
     }
 }
 
@@ -54,56 +49,90 @@ $current = $player->getCurrent();
 body{
     background:#111;
     color:white;
-    font-family:Arial;
-    padding-bottom:200px; 
+    font-family:Arial, sans-serif;
+    padding-bottom:140px;
+    margin:0;
 }
+
+h1{
+    letter-spacing:1px;
+    font-weight:300;
+    color:#eee;
+    margin:20px;
+}
+
 .box{
-    background:#222;
+    background:#1a1a1a;
+    padding:18px;
+    border-radius:10px;
+    margin:20px;
+    box-shadow:0 0 12px rgba(0,0,0,0.3);
+}
+
+.track{
+    background:#1b1b1b;
     padding:12px;
-    border-radius:6px;
-    margin-bottom:12px;
+    margin-bottom:10px;
+    border-radius:8px;
+    transition:0.2s;
+}
+.track:hover{
+    background:#2d2d2d;
+    transform:translateX(4px);
 }
 .track a{
     text-decoration:none;
-    color:#ccc;
+    color:#ddd;
 }
 .track a:hover{
-    color:white;
+    color:#fff;
 }
+
 .now{
     position:fixed;
     bottom:0;
     left:0;
     right:0;
-    background:#000;
-    padding:28px;
-    box-shadow:0 -4px 12px rgba(0,0,0,0.6);
-    text-align:center; 
+    background:#111;
+    padding:18px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    box-shadow:0 -4px 20px rgba(0,0,0,0.7);
 }
-.now img.cover {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin: 0 auto 14px auto;
-    display: block;
+
+.now img.cover{
+    width:80px;
+    height:80px;
+    border-radius:6px;
+    object-fit:cover;
 }
+
 .now-title{
-    font-size:20px;
-    font-weight:bold;
-    margin-bottom:14px;
-    text-align:center;
+    font-size:18px;
+    font-weight:600;
 }
-.now audio{
-    width:100%;
-    height:40px;
+
+/* ————————————————————————————————
+    FIX: Seekbar full width beside title
+——————————————————————————————— */
+.audio-wrap{
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.audio-wrap audio{
+    width: 100%;
+    max-width: 100%;
+    border-radius:8px;
 }
 </style>
 </head>
 <body>
 
 <h1>TA Progdas Kevin 21120125140124</h1>
-<?php if($message): ?><div><?=$message?></div><?php endif; ?>
+<?php if($message): ?><div style="margin:20px"><?=$message?></div><?php endif; ?>
 
 <div class="box">
     <h2>List Lagu</h2>
@@ -114,7 +143,7 @@ body{
         ?>
         <div class="track">
             <a href="?play=<?=$url?>&title=<?=$title?>">
-                Play: <?=$s['title']?>
+                ▶ <?=$s['title']?>
             </a>
         </div>
     <?php endforeach; ?>
@@ -122,9 +151,15 @@ body{
 
 <?php if($current): ?>
 <div class="now">
+
     <img class="cover" src="ab67616d00001e0249bdf0e981cbba25d48b44e0ab67616d00001e02cba6a8de759fb21242c81771ab67616d00001e02d106d01a4ac447548600132eab67616d00001e02d623688488865906052ef96b.jpg">
+
     <div class="now-title"><?=$current['title']?></div>
-    <audio controls autoplay src="<?=$current['url']?>"></audio>
+
+    <div class="audio-wrap">
+        <audio controls autoplay src="<?=$current['url']?>"></audio>
+    </div>
+
 </div>
 <?php endif; ?>
 
