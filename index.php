@@ -52,7 +52,7 @@ body{
     background:#111;
     color:white;
     font-family:Arial;
-    padding-bottom:160px; /* more space for big player bar */
+    padding-bottom:200px; /* extra space for bigger player */
 }
 .box{
     background:#222;
@@ -75,9 +75,21 @@ body{
     left:0;
     right:0;
     background:#000;
-    padding:24px;
+    padding:28px;
     box-shadow:0 -4px 12px rgba(0,0,0,0.6);
+    text-align:center; 
 }
+
+
+.now img.cover {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 0 auto 14px auto;
+    display: block;
+}
+
 
 .now-title{
     font-size:20px;
@@ -85,6 +97,7 @@ body{
     margin-bottom:14px;
     text-align:center;
 }
+
 
 .now audio{
     width:100%;
@@ -114,6 +127,10 @@ body{
 
 <?php if($current): ?>
 <div class="now">
+
+    <!-- TUNYA (COVER IMAGE) -->
+    <img class="cover" src="ab67616d00001e0249bdf0e981cbba25d48b44e0ab67616d00001e02cba6a8de759fb21242c81771ab67616d00001e02d106d01a4ac447548600132eab67616d00001e02d623688488865906052ef96b.jpg" alt="Cover">
+
     <div class="now-title"><?=$current['title']?></div>
     <audio controls autoplay src="<?=$current['url']?>"></audio>
 </div>
