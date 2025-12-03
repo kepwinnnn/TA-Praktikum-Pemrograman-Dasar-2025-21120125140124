@@ -107,11 +107,11 @@ body{
 </head>
 <body>
 
-<h1>Music Player</h1>
+<h1>TA Progdas Kevin 21120125140124</h1>
 <?php if($message): ?><div><?=$message?></div><?php endif; ?>
 
 <div class="box">
-    <h2>Song List</h2>
+    <h2>List Lagu</h2>
     <?php foreach($player->getSongs() as $s): ?>
         <?php
             $url = urlencode($s['url']);
