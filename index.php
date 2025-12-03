@@ -1,10 +1,9 @@
 <?php
 class MusicPlayer {
-    private $songs = [];   // Encapsulated variable
+    private $songs = [];
     private $current = null;
 
     public function __construct(){
-        // Manual song list in the SAME folder as index.php
         $this->songs = [
             ['title' => 'Tarot - Feast', 'url' => 'Tarot.flac'],
             ['title' => 'O, Tuan - Feast', 'url' => 'o,Tuan.flac'],
@@ -20,17 +19,21 @@ class MusicPlayer {
 
     public function playSong($song){
         $this->current = $song;
+        $this->count++;
     }
 
     public function getCurrent(){
         return $this->current;
+    }
+
+    public function getCount(){
+        return $this->count;
     }
 }
 
 $player = new MusicPlayer();
 $message = "";
 
-// IF / ELSE
 if (isset($_GET['play'])) {
     $song = [
         'title' => $_GET['title'],
@@ -46,13 +49,13 @@ $current = $player->getCurrent();
 <html>
 <head>
 <meta charset="utf-8">
-<title>Simple Music Player</title>
+<title>TA Progdas Kevin</title>
 <style>
 body{
     background:#111;
     color:white;
     font-family:Arial;
-    padding-bottom:200px; /* extra space for bigger player */
+    padding-bottom:200px; 
 }
 .box{
     background:#222;
@@ -67,8 +70,6 @@ body{
 .track a:hover{
     color:white;
 }
-
-/* BIG FIXED PLAYER BAR */
 .now{
     position:fixed;
     bottom:0;
@@ -79,8 +80,6 @@ body{
     box-shadow:0 -4px 12px rgba(0,0,0,0.6);
     text-align:center; 
 }
-
-
 .now img.cover {
     width: 200px;
     height: 200px;
@@ -89,16 +88,12 @@ body{
     margin: 0 auto 14px auto;
     display: block;
 }
-
-
 .now-title{
     font-size:20px;
     font-weight:bold;
     margin-bottom:14px;
     text-align:center;
 }
-
-
 .now audio{
     width:100%;
     height:40px;
@@ -127,10 +122,7 @@ body{
 
 <?php if($current): ?>
 <div class="now">
-
-    <!-- TUNYA (COVER IMAGE) -->
-    <img class="cover" src="ab67616d00001e0249bdf0e981cbba25d48b44e0ab67616d00001e02cba6a8de759fb21242c81771ab67616d00001e02d106d01a4ac447548600132eab67616d00001e02d623688488865906052ef96b.jpg" alt="Cover">
-
+    <img class="cover" src="ab67616d00001e0249bdf0e981cbba25d48b44e0ab67616d00001e02cba6a8de759fb21242c81771ab67616d00001e02d106d01a4ac447548600132eab67616d00001e02d623688488865906052ef96b.jpg">
     <div class="now-title"><?=$current['title']?></div>
     <audio controls autoplay src="<?=$current['url']?>"></audio>
 </div>
